@@ -1,23 +1,23 @@
 name: 测试 Docker Hub 登录
 
 on:
-  workflow_dispatch:  # 手动触发
+  workflow_dispatch:
 
 jobs:
   test-login:
     runs-on: ubuntu-latest
     steps:
-      - name: 输出 Secrets 信息（脱敏）
+      - name: 测试 Secrets 是否存在
         run: |
-          echo "DOCKERHUB_USERNAME 长度: ${#DOCKERHUB_USERNAME}"
-          echo "DOCKERHUB_PASSWORD 长度: ${#DOCKERHUB_PASSWORD}"
-          echo "DOCKERHUB_USERNAME 首字符: ${DOCKERHUB_USERNAME:0:1}"
-          echo "DOCKERHUB_USERNAME 尾字符: ${DOCKERHUB_USERNAME: -1}"
+          if [ -z "${{ secrets.DOCKERHUB_USERNAME }}" ]; then
+            echo "❌ DOCKERHUB_USERNAME 不存在或为空"
+          else
+            echo "✓ DOCKERHUB_USERNAME 已配置，长度: ${#USERNAME}"
+          fi
         env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+          USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
-      - name: 尝试登录 Docker Hub (用户名)
+      - name: 登录 Docker Hub
         uses: docker/login-action@v3
         with:
           registry: docker.io
