@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"github.com/dushixiang/pika/internal/models"
-	"github.com/dushixiang/pika/internal/utils"
+	"github.com/wybroot/pikaw/internal/models"
+	"github.com/wybroot/pikaw/internal/utils"
 	"github.com/go-orz/orz"
 	"github.com/labstack/echo/v4"
 	"gorm.io/datatypes"

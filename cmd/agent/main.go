@@ -10,11 +10,11 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/dushixiang/pika/pkg/agent/config"
-	"github.com/dushixiang/pika/pkg/agent/service"
-	"github.com/dushixiang/pika/pkg/agent/sshmonitor"
-	"github.com/dushixiang/pika/pkg/agent/updater"
-	"github.com/dushixiang/pika/pkg/agent/utils"
+	"github.com/wybroot/pikaw/pkg/agent/config"
+	"github.com/wybroot/pikaw/pkg/agent/service"
+	"github.com/wybroot/pikaw/pkg/agent/sshmonitor"
+	"github.com/wybroot/pikaw/pkg/agent/updater"
+	"github.com/wybroot/pikaw/pkg/agent/utils"
 	"github.com/spf13/cobra"
 )
 

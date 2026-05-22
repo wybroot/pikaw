@@ -3,8 +3,8 @@ package collector
 import (
 	"strings"
 
-	"github.com/dushixiang/pika/internal/protocol"
-	"github.com/dushixiang/pika/pkg/agent/config"
+	"github.com/wybroot/pikaw/internal/protocol"
+	"github.com/wybroot/pikaw/pkg/agent/config"
 	"github.com/shirou/gopsutil/v4/disk"
 )
 

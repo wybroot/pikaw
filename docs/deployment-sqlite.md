@@ -11,13 +11,13 @@
 
 ```bash
 # 下载 docker-compose.yml 配置文件
-curl -O https://raw.githubusercontent.com/dushixiang/pika/main/docker-compose.sqlite.yml
+curl -O https://raw.githubusercontent.com/wybroot/pikaw/master/docker-compose.sqlite.yml
 # 下载配置文件示例
-curl -o config.yaml https://raw.githubusercontent.com/dushixiang/pika/main/config.sqlite.yaml
+curl -o config.yaml https://raw.githubusercontent.com/wybroot/pikaw/master/config.sqlite.yaml
 
 # 或使用 wget
-wget https://raw.githubusercontent.com/dushixiang/pika/main/docker-compose.sqlite.yml
-wget -O config.yaml https://raw.githubusercontent.com/dushixiang/pika/main/config.sqlite.yaml
+wget https://raw.githubusercontent.com/wybroot/pikaw/master/docker-compose.sqlite.yml
+wget -O config.yaml https://raw.githubusercontent.com/wybroot/pikaw/master/config.sqlite.yaml
 ```
 
 ### 2. 修改配置

@@ -17,8 +17,8 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/dushixiang/pika/internal/models"
-	"github.com/dushixiang/pika/internal/utils"
+	"github.com/wybroot/pikaw/internal/models"
+	"github.com/wybroot/pikaw/internal/utils"
 	"github.com/go-orz/cache"
 	"github.com/valyala/fasttemplate"
 	"go.uber.org/zap"

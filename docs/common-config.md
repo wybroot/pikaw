@@ -76,8 +76,7 @@ https://tools.typesafe.cn/bcrypt
 因为用户权限是一套非常通用的需求，例如登录、注销、修改密码、忘记密码、二次认证等等，这些都不是本系统的重点，没有必要去重新实现，使用第三方认证服务可以避免这个问题。
 
 - 优先推荐 Github OAuth 认证
-- 建议使用 [next-terminal](https://github.com/dushixiang/next-terminal) 作为 OIDC 认证服务，支持 OTP 认证，Passkey 认证。
-  详细文档 https://docs.next-terminal.typesafe.cn/usage/oidc_server.html
+- 如需 OIDC 认证，可使用 Keycloak、Authelia、Authentik 等通用 OIDC Provider，支持 OTP、Passkey 等认证方式。
 
 ### 修改配置文件后需要重启服务
 

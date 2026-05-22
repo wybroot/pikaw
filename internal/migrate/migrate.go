@@ -4,11 +4,11 @@ import (
 	"context"
 	"strings"
 
-	"github.com/dushixiang/pika/internal/migrate/v0_1_1"
-	"github.com/dushixiang/pika/internal/migrate/v0_1_2"
-	"github.com/dushixiang/pika/internal/migrate/v0_1_3"
-	"github.com/dushixiang/pika/internal/service"
-	"github.com/dushixiang/pika/pkg/version"
+	"github.com/wybroot/pikaw/internal/migrate/v0_1_1"
+	"github.com/wybroot/pikaw/internal/migrate/v0_1_2"
+	"github.com/wybroot/pikaw/internal/migrate/v0_1_3"
+	"github.com/wybroot/pikaw/internal/service"
+	"github.com/wybroot/pikaw/pkg/version"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 )

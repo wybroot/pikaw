@@ -10,7 +10,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/dushixiang/pika/pkg/agent/config"
+	"github.com/wybroot/pikaw/pkg/agent/config"
 	"github.com/minio/selfupdate"
 )
 

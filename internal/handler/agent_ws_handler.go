@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/dushixiang/pika/internal/protocol"
-	ws "github.com/dushixiang/pika/internal/websocket"
+	"github.com/wybroot/pikaw/internal/protocol"
+	ws "github.com/wybroot/pikaw/internal/websocket"
 	"github.com/gorilla/websocket"
 	"github.com/labstack/echo/v4"
 	"go.uber.org/zap"

@@ -10,8 +10,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dushixiang/pika/internal/protocol"
-	"github.com/dushixiang/pika/pkg/agent/utils"
+	"github.com/wybroot/pikaw/internal/protocol"
+	"github.com/wybroot/pikaw/pkg/agent/utils"
 	bolt "go.etcd.io/bbolt"
 )
 

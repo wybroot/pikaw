@@ -4,7 +4,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/dushixiang/pika/internal/protocol"
+	"github.com/wybroot/pikaw/internal/protocol"
 	"github.com/shirou/gopsutil/v4/process"
 )
 

@@ -1,4 +1,4 @@
-module github.com/dushixiang/pika
+module github.com/wybroot/pikaw
 
 go 1.26
 

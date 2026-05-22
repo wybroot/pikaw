@@ -10,10 +10,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/dushixiang/pika/internal/metric"
-	"github.com/dushixiang/pika/internal/protocol"
-	"github.com/dushixiang/pika/internal/repo"
-	"github.com/dushixiang/pika/internal/vmclient"
+	"github.com/wybroot/pikaw/internal/metric"
+	"github.com/wybroot/pikaw/internal/protocol"
+	"github.com/wybroot/pikaw/internal/repo"
+	"github.com/wybroot/pikaw/internal/vmclient"
 	"github.com/go-orz/toolkit/syncx"
 
 	"github.com/go-orz/cache"

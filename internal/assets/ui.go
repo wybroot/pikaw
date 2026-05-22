@@ -7,7 +7,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/dushixiang/pika/internal/models"
+	"github.com/wybroot/pikaw/internal/models"
 )
 
 type SystemConfigProvider interface {

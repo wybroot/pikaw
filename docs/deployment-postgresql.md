@@ -11,13 +11,13 @@
 
 ```bash
 # 下载 docker-compose.yml 配置文件
-curl -O https://raw.githubusercontent.com/dushixiang/pika/main/docker-compose.postgresql.yml
+curl -O https://raw.githubusercontent.com/wybroot/pikaw/master/docker-compose.postgresql.yml
 # 下载配置文件示例
-curl -o config.yaml https://raw.githubusercontent.com/dushixiang/pika/main/config.postgresql.yaml
+curl -o config.yaml https://raw.githubusercontent.com/wybroot/pikaw/master/config.postgresql.yaml
 
 # 或使用 wget
-wget https://raw.githubusercontent.com/dushixiang/pika/main/docker-compose.postgresql.yml
-wget -O config.yaml https://raw.githubusercontent.com/dushixiang/pika/main/config.postgresql.yaml
+wget https://raw.githubusercontent.com/wybroot/pikaw/master/docker-compose.postgresql.yml
+wget -O config.yaml https://raw.githubusercontent.com/wybroot/pikaw/master/config.postgresql.yaml
 ```
 
 ### 2. 修改配置

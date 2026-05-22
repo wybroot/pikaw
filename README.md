@@ -4,7 +4,7 @@
 
 一个基于 Go + PostgreSQL/SQLite + VictoriaMetrics 的实时探针监控系统
 
-[快速开始](#快速开始) • [截图](#截图) • [功能特性](#功能特性) • [文档](#文档) • [加入群聊](#加入群聊) 
+[快速开始](#快速开始) • [截图](#截图) • [功能特性](#功能特性) • [文档](#文档)
 
 </div>
 
@@ -41,8 +41,8 @@ Pika 是一个轻量级的探针监控系统，支持实时数据采集、存储
 
 ```bash
 # 下载配置文件
-curl -O https://raw.githubusercontent.com/dushixiang/pika/main/docker-compose.sqlite.yml
-curl -o config.yaml https://raw.githubusercontent.com/dushixiang/pika/main/config.sqlite.yaml
+curl -O https://raw.githubusercontent.com/wybroot/pikaw/master/docker-compose.sqlite.yml
+curl -o config.yaml https://raw.githubusercontent.com/wybroot/pikaw/master/config.sqlite.yaml
 
 # 修改配置（重要：修改 JWT Secret 和管理员密码）
 # 编辑 config.yaml
@@ -60,8 +60,8 @@ docker-compose -f docker-compose.sqlite.yml up -d
 
 ```bash
 # 下载配置文件
-curl -O https://raw.githubusercontent.com/dushixiang/pika/main/docker-compose.postgresql.yml
-curl -o config.yaml https://raw.githubusercontent.com/dushixiang/pika/main/config.postgresql.yaml
+curl -O https://raw.githubusercontent.com/wybroot/pikaw/master/docker-compose.postgresql.yml
+curl -o config.yaml https://raw.githubusercontent.com/wybroot/pikaw/master/config.postgresql.yaml
 
 # 修改配置（重要：修改数据库密码、JWT Secret 和管理员密码）
 # 编辑 config.yaml
@@ -87,10 +87,3 @@ docker-compose -f docker-compose.postgresql.yml up -d
 - Docker 20.10+
 - Docker Compose 1.29+
 
-## 加入群聊 
-
-请备注 pika
-
-<img src="screenshots/wx1.png" width="300" height="auto"/>
-
-https://t.me/next_terminal

@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/dushixiang/pika/internal/utils"
+	"github.com/wybroot/pikaw/internal/utils"
 	"github.com/go-orz/orz"
 	"github.com/labstack/echo/v4"
 )

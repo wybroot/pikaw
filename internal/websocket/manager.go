@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dushixiang/pika/internal/protocol"
+	"github.com/wybroot/pikaw/internal/protocol"
 	"github.com/gorilla/websocket"
 	"go.uber.org/zap"
 )

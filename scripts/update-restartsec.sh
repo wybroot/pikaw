@@ -2,7 +2,7 @@
 
 # Pika Agent RestartSec 升级脚本
 # 用途: 将 systemd 服务的 RestartSec 从 120 改为 5
-# 使用: curl -fsSL https://raw.githubusercontent.com/dushixiang/pika/main/scripts/update-restartsec.sh | sudo bash
+# 使用: curl -fsSL https://raw.githubusercontent.com/wybroot/pikaw/master/scripts/update-restartsec.sh | sudo bash
 
 set -e
 
@@ -23,7 +23,7 @@ echo ""
 # 检查是否以 root 权限运行
 if [ "$EUID" -ne 0 ]; then
     echo -e "${RED}错误: 请使用 root 权限运行此脚本${NC}"
-    echo "使用方法: curl -fsSL https://raw.githubusercontent.com/dushixiang/pika/main/scripts/update-restartsec.sh | sudo bash"
+    echo "使用方法: curl -fsSL https://raw.githubusercontent.com/wybroot/pikaw/master/scripts/update-restartsec.sh | sudo bash"
     exit 1
 fi
 

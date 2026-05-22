@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dushixiang/pika/internal/models"
-	"github.com/dushixiang/pika/internal/protocol"
+	"github.com/wybroot/pikaw/internal/models"
+	"github.com/wybroot/pikaw/internal/protocol"
 	"github.com/go-orz/orz"
 	"github.com/labstack/echo/v4"
 	"go.uber.org/zap"

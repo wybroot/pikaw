@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/dushixiang/pika/internal/models"
+	"github.com/wybroot/pikaw/internal/models"
 	"github.com/go-orz/orz"
 	"gorm.io/gorm"
 )

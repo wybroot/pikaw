@@ -4,8 +4,8 @@ import (
 	"errors"
 	"time"
 
-	"github.com/dushixiang/pika/internal/protocol"
-	"github.com/dushixiang/pika/pkg/agent/config"
+	"github.com/wybroot/pikaw/internal/protocol"
+	"github.com/wybroot/pikaw/pkg/agent/config"
 )
 
 // ErrNoData 表示采集成功但当前周期无有效数据可上报（如 GPU 不存在、磁盘列表为空）。

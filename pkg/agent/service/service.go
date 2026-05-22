@@ -10,12 +10,12 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/dushixiang/pika/pkg/agent"
-	"github.com/dushixiang/pika/pkg/agent/config"
-	"github.com/dushixiang/pika/pkg/agent/id"
-	"github.com/dushixiang/pika/pkg/agent/sshmonitor"
-	"github.com/dushixiang/pika/pkg/agent/sysutil"
-	"github.com/dushixiang/pika/pkg/agent/updater"
+	"github.com/wybroot/pikaw/pkg/agent"
+	"github.com/wybroot/pikaw/pkg/agent/config"
+	"github.com/wybroot/pikaw/pkg/agent/id"
+	"github.com/wybroot/pikaw/pkg/agent/sshmonitor"
+	"github.com/wybroot/pikaw/pkg/agent/sysutil"
+	"github.com/wybroot/pikaw/pkg/agent/updater"
 	"github.com/kardianos/service"
 )
 

@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/dushixiang/pika/internal/assets"
-	"github.com/dushixiang/pika/pkg/version"
+	"github.com/wybroot/pikaw/internal/assets"
+	"github.com/wybroot/pikaw/pkg/version"
 	"github.com/go-orz/orz"
 	"github.com/labstack/echo/v4"
 	"go.uber.org/zap"

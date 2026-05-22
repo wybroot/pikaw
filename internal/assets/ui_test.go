@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/dushixiang/pika/internal/models"
+	"github.com/wybroot/pikaw/internal/models"
 )
 
 type testSystemConfigProvider struct {

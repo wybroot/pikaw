@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dushixiang/pika/internal/protocol"
+	"github.com/wybroot/pikaw/internal/protocol"
 )
 
 // LoginAssetsCollector 登录日志收集器

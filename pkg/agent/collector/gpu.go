@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dushixiang/pika/internal/protocol"
+	"github.com/wybroot/pikaw/internal/protocol"
 )
 
 const nvidiaSmiTimeout = 15 * time.Second
