@@ -1,45 +1,72 @@
-### Example user template template
-### Example user template
-
-# IntelliJ project files
-.idea
+# =====================
+# IDE / Editor
+# =====================
+.idea/
+.vscode/
 *.iml
-out
-gen
+*.swp
+*.swo
+*~
 
-# 日志文件
-logs/
-*.log
+# =====================
+# OS
+# =====================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# 数据文件
-data/
-
-# 编译产物
+# =====================
+# Go
+# =====================
 bin/
+vendor/
+go.work
+go.work.sum
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
-
-# 测试文件
 *.test
 *.out
+*.prof
 
-# Go 相关
-vendor/
-go.work
-go.work.sum
+# =====================
+# Web (Vite / React)
+# =====================
+web/node_modules/
+web/dist/
+web/dist-ssr/
+web/*.local
+web/.env
+web/.env.*
 
-# 临时文件
-*.swp
-*.swo
-*~
-.DS_Store
-
+# =====================
+# Config (runtime / secrets)
+# =====================
 config.yaml
 agent.yaml
-playground
-web/node_modules
-web/dist
-deploy.sh
+.env
+.env.*
+
+# =====================
+# Logs & Data
+# =====================
+logs/
+data/
+*.log
+
+# =====================
+# Test & Coverage
+# =====================
+coverage.out
+coverage.html
+*.coverprofile
+
+# =====================
+# Temp
+# =====================
+tmp/
+temp/
+playground/
