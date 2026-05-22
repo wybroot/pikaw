@@ -1,0 +1,64 @@
+# Pika Agent 配置文件示例
+# 配置文件默认路径: ~/.pika/agent.yaml
+
+# 服务器配置
+server:
+  # 服务器地址（不需要指定协议路径，会自动拼接）
+  # 例如: http://localhost:8080 或 https://your-server.com
+  endpoint: http://localhost:8080
+
+  # API Key（必填，从服务端获取）
+  api_key: "your-api-key-here"
+
+  # 是否跳过 TLS 证书验证（可选，默认: false）
+  # 警告: 仅用于测试环境或自签名证书，生产环境不建议开启
+  # 开启后会跳过服务器 HTTPS 证书的验证
+  insecure_skip_verify: false
+
+# Agent 配置
+agent:
+  # Agent 名称（可选，默认使用主机名）
+  # 用于在服务端区分不同的探针
+  name: ""
+  log_level: "info" # 日志级别: debug, info, warn, error
+  log_file: "agent.log" # 日志文件名（可选，默认为空，不输出到文件）
+  log_max_size: 100 # 日志文件最大大小（MB），默认 100MB
+  log_max_backups: 3 # 日志文件最大备份数，默认 3 个备份文件
+  log_max_age: 28 # 日志文件最大保存天数，默认 28 天
+  log_compress: true # 是否压缩旧日志文件，默认 true
+
+# 采集器配置
+collector:
+  # 网络采集包含的网卡列表（白名单，支持正则表达式）
+  # 如果配置了此项，则只采集匹配的网卡，忽略 network_exclude
+  # 例如: ["^eth0$", "^en0$", "^ens.*"]
+  network_include: [ ]
+
+  # 网络采集排除的网卡列表（可选，支持正则表达式）
+  # 如果不配置，默认只排除回环地址（lo, lo0）
+  # 支持正则表达式匹配网卡名称
+  network_exclude:
+    - "^lo$"           # 排除 lo 接口（回环地址）
+    - "^lo0$"          # 排除 lo0 接口（回环地址）
+    - "^docker.*"      # 排除所有 docker 开头的接口
+    - "^veth.*"        # 排除所有 veth 开头的虚拟接口
+    - "^br-.*"         # 排除所有 br- 开头的网桥接口
+    - "^tap.*"         # 排除所有 tap 开头的接口（PVE/KVM 虚拟机）
+
+  # 磁盘采集包含的挂载点列表（白名单）
+  # 如果为空，默认采集系统主分区（Linux/macOS: "/"，Windows: "C:\"）
+  # 例如:
+  #   Linux/macOS: ["/", "/data", "/home"]
+  #   Windows: ["C:", "D:"]
+  disk_include:
+    - "/"              # 只采集根分区
+
+# 自动更新配置
+auto_update:
+  # 是否启用自动更新
+  # 启用后会定期检查服务端版本，有新版本时自动下载并更新
+  # 更新地址会自动从 server.endpoint 获取
+  enabled: true
+
+  # 检查更新间隔
+  check_interval: 10m
