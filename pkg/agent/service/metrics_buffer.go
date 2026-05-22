@@ -38,7 +38,7 @@ type bufferedMessage struct {
 }
 
 func newOutboundBuffer() *outboundBuffer {
-	path := filepath.Join(utils.GetSafeHomeDir(), ".pika", outboundBufferDBName)
+	path := filepath.Join(utils.GetSafeHomeDir(), ".pikaw", outboundBufferDBName)
 	return &outboundBuffer{path: path}
 }
 

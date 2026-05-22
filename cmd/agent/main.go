@@ -25,8 +25,8 @@ var (
 // rootCmd 根命令
 var rootCmd = &cobra.Command{
 	Use:   "agent",
-	Short: "Pika 监控探针",
-	Long:  `Pika Agent 是一个轻量级的系统监控探针，用于采集服务器的各项性能指标并上报到 Pika 服务端。`,
+	Short: "PikaW 监控探针",
+	Long:  `PikaW Agent 是一个轻量级的系统监控探针，用于采集服务器的各项性能指标并上报到 Pika 服务端。`,
 	Run: func(cmd *cobra.Command, args []string) {
 		_ = cmd.Help()
 	},
@@ -37,7 +37,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "显示版本信息",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Pika Agent v%s\n", service.GetVersion())
+		fmt.Printf("PikaW Agent v%s\n", service.GetVersion())
 		fmt.Printf("OS: %s\n", runtime.GOOS)
 		fmt.Printf("Arch: %s\n", runtime.GOARCH)
 		fmt.Printf("Go Version: %s\n", runtime.Version())
@@ -181,7 +181,7 @@ var (
 
 func init() {
 	// 全局参数
-	rootCmd.PersistentFlags().StringVarP(&configPath, "config", "c", "", "配置文件路径（默认: ~/.pika/agent.yaml）")
+	rootCmd.PersistentFlags().StringVarP(&configPath, "config", "c", "", "配置文件路径（默认: ~/.pikaw/agent.yaml）")
 
 	// 注册命令的参数
 	registerCmd.Flags().StringVarP(&serverEndpoint, "endpoint", "e", "", "服务端地址 (例如: http://your-server.com:18888)")
@@ -407,7 +407,7 @@ func registerAgent(cmd *cobra.Command, args []string) {
 	reader := bufio.NewReader(os.Stdin)
 
 	log.Println("═══════════════════════════════════════")
-	log.Println("   🚀 Pika Agent 注册向导")
+	log.Println("   🚀 PikaW Agent 注册向导")
 	log.Println("═══════════════════════════════════════")
 	log.Println()
 
@@ -556,7 +556,7 @@ func maskToken(token string) string {
 
 func getHomeLogPath() string {
 	homeDir := utils.GetSafeHomeDir()
-	return filepath.Join(homeDir, ".pika", "logs", "agent.log")
+	return filepath.Join(homeDir, ".pikaw", "logs", "agent.log")
 }
 
 // showInfo 显示配置信息
@@ -568,7 +568,7 @@ func showInfo(cmd *cobra.Command, args []string) {
 	}
 
 	fmt.Println("═══════════════════════════════════════")
-	fmt.Println("   📋 Pika Agent 配置信息")
+	fmt.Println("   📋 PikaW Agent 配置信息")
 	fmt.Println("═══════════════════════════════════════")
 	fmt.Println()
 
@@ -623,15 +623,15 @@ func viewLog(cmd *cobra.Command, args []string) {
 	serviceRunning := false
 	if runtime.GOOS == "linux" {
 		// 检查 systemd 服务状态
-		if out, err := exec.Command("systemctl", "is-active", "pika-agent").CombinedOutput(); err == nil && strings.TrimSpace(string(out)) == "active" {
+		if out, err := exec.Command("systemctl", "is-active", "pikaw-agent").CombinedOutput(); err == nil && strings.TrimSpace(string(out)) == "active" {
 			serviceRunning = true
 		}
 	} else if runtime.GOOS == "darwin" {
-		if out, err := exec.Command("launchctl", "list", "org.pika.pika-agent").CombinedOutput(); err == nil && len(strings.TrimSpace(string(out))) > 0 {
+		if out, err := exec.Command("launchctl", "list", "org.pika.pikaw-agent").CombinedOutput(); err == nil && len(strings.TrimSpace(string(out))) > 0 {
 			serviceRunning = true
 		}
 	} else if runtime.GOOS == "windows" {
-		if out, err := exec.Command("sc", "query", "pika-agent").CombinedOutput(); err == nil && strings.Contains(string(out), "RUNNING") {
+		if out, err := exec.Command("sc", "query", "pikaw-agent").CombinedOutput(); err == nil && strings.Contains(string(out), "RUNNING") {
 			serviceRunning = true
 		}
 	}
@@ -662,7 +662,7 @@ func viewServiceLog(cfg *config.Config) {
 
 // viewLinuxServiceLog Linux 系统服务日志查看（优先 journalctl，空时回退到日志文件）
 func viewLinuxServiceLog(cfg *config.Config) {
-	args := []string{"journalctl", "-u", "pika-agent", "-n", fmt.Sprintf("%d", logLines)}
+	args := []string{"journalctl", "-u", "pikaw-agent", "-n", fmt.Sprintf("%d", logLines)}
 	if logFollow {
 		args = append(args, "-f")
 	}
@@ -683,7 +683,7 @@ func viewLinuxServiceLog(cfg *config.Config) {
 	}
 
 	// 跟踪模式：先快速检查 journal 是否有内容，再决定是否回退
-	checkOut, _ := exec.Command("journalctl", "-u", "pika-agent", "-n", "1").CombinedOutput()
+	checkOut, _ := exec.Command("journalctl", "-u", "pikaw-agent", "-n", "1").CombinedOutput()
 	checkOutput := strings.TrimSpace(string(checkOut))
 	if checkOutput == "" || strings.Contains(checkOutput, "-- No entries --") {
 		// journal 为空，回退到日志文件
@@ -706,7 +706,7 @@ func viewLinuxServiceLog(cfg *config.Config) {
 // viewDarwinServiceLog macOS 系统服务日志查看
 func viewDarwinServiceLog() {
 	args := []string{"log", "show"}
-	args = append(args, "--predicate", `subsystem == "org.pika.pika-agent"`)
+	args = append(args, "--predicate", `subsystem == "org.pika.pikaw-agent"`)
 	args = append(args, "--last", fmt.Sprintf("%d", logLines))
 	if logFollow {
 		args = append(args, "--stream")
@@ -731,7 +731,7 @@ func viewDarwinServiceLog() {
 
 // viewWindowsServiceLog Windows 系统服务日志查看
 func viewWindowsServiceLog() {
-	psCmd := fmt.Sprintf("Get-WinEvent -FilterHashtable @{LogName='Application';ProviderName='pika-agent'} -MaxEvents %d | Format-List TimeCreated, Message", logLines)
+	psCmd := fmt.Sprintf("Get-WinEvent -FilterHashtable @{LogName='Application';ProviderName='pikaw-agent'} -MaxEvents %d | Format-List TimeCreated, Message", logLines)
 	cmd := exec.Command("powershell", "-NoProfile", "-Command", psCmd)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -764,11 +764,11 @@ func viewLogFile(cfg *config.Config) {
 		fmt.Println()
 		fmt.Println("💡 提示: 如果 Agent 以服务方式运行，请使用以下命令查看日志:")
 		if runtime.GOOS == "linux" {
-			fmt.Println("   journalctl -u pika-agent -n 100 -f")
+			fmt.Println("   journalctl -u pikaw-agent -n 100 -f")
 		} else if runtime.GOOS == "darwin" {
-			fmt.Println("   log show --predicate 'subsystem == \"org.pika.pika-agent\"' --last 100")
+			fmt.Println("   log show --predicate 'subsystem == \"org.pika.pikaw-agent\"' --last 100")
 		} else if runtime.GOOS == "windows" {
-			fmt.Println("   Get-WinEvent -FilterHashtable @{LogName='Application';ProviderName='pika-agent'} -MaxEvents 100")
+			fmt.Println("   Get-WinEvent -FilterHashtable @{LogName='Application';ProviderName='pikaw-agent'} -MaxEvents 100")
 		}
 		fmt.Println()
 		fmt.Println("或者使用 --service 参数直接查看服务日志:")

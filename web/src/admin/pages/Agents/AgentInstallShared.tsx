@@ -7,9 +7,9 @@ import ApiKeyModal from '../ApiKeys/ApiKeyModal';
 
 const { Paragraph, Text } = Typography;
 
-export const AGENT_NAME = 'pika-agent';
-export const AGENT_NAME_EXE = 'pika-agent.exe';
-export const CONFIG_PATH = '~/.pika/agent.yaml';
+export const AGENT_NAME = 'pikaw-agent';
+export const AGENT_NAME_EXE = 'pikaw-agent.exe';
+export const CONFIG_PATH = '~/.pikaw/agent.yaml';
 
 type InstallNavKey = 'one-click' | 'manual';
 

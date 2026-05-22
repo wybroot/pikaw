@@ -345,8 +345,8 @@ func (s *PropertyService) InitializeDefaultConfigs(ctx context.Context) error {
 			ID:   PropertyIDSystemConfig,
 			Name: "系统配置",
 			Value: models.SystemConfig{
-				SystemNameZh: "皮卡监控",
-				SystemNameEn: "Pika Monitor",
+				SystemNameZh: "PikaW 监控",
+				SystemNameEn: "PikaW Monitor",
 				LogoBase64:   assets.DefaultLogoBase64(),
 				ICPCode:      "",
 				DefaultView:  "grid",

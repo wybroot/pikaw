@@ -171,7 +171,7 @@ const SystemConfigComponent = () => {
                                     { max: 50, message: '系统名称不能超过 50 个字符' },
                                 ]}
                             >
-                                <Input placeholder="例如：Pika Monitor" />
+                                <Input placeholder="例如：PikaW Monitor" />
                             </Form.Item>
 
                             <Form.Item
@@ -190,7 +190,7 @@ const SystemConfigComponent = () => {
                                     { max: 50, message: '系统名称不能超过 50 个字符' },
                                 ]}
                             >
-                                <Input placeholder="例如：皮卡监控" />
+                                <Input placeholder="例如：PikaW 监控" />
                             </Form.Item>
                         </div>
 

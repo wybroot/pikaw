@@ -2,15 +2,15 @@ database:
   enabled: true
   type: postgres
   postgres:
-    hostname: pika-postgresql
+    hostname: pikaw-postgresql
     port: 5432
-    username: pika
-    password: pika
-    database: pika
+    username: pikaw
+    password: pikaw
+    database: pikaw
   show_sql: false
 log:
   level: debug # 日志等级  debug,info,waring,error
-  filename: ./logs/pika.log
+  filename: ./logs/pikaw.log
 
 server:
   addr: "0.0.0.0:8080"

@@ -1,5 +1,5 @@
-# Pika Agent 配置文件示例
-# 配置文件默认路径: ~/.pika/agent.yaml
+# PikaW Agent 配置文件示例
+# 配置文件默认路径: ~/.pikaw/agent.yaml
 
 # 服务器配置
 server:

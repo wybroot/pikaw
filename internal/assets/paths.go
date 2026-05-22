@@ -13,14 +13,14 @@ const (
 )
 
 func WebDir() string {
-	if dir := os.Getenv("PIKA_WEB_DIR"); dir != "" {
+	if dir := os.Getenv("PIKAW_WEB_DIR"); dir != "" {
 		return dir
 	}
 	return defaultWebDir
 }
 
 func AgentDir() string {
-	if dir := os.Getenv("PIKA_AGENT_DIR"); dir != "" {
+	if dir := os.Getenv("PIKAW_AGENT_DIR"); dir != "" {
 		return dir
 	}
 	return defaultAgentDir
@@ -32,7 +32,7 @@ func AgentPath(filename string) string {
 
 func DefaultLogoBase64() string {
 	for _, path := range []string{
-		os.Getenv("PIKA_DEFAULT_LOGO_PATH"),
+		os.Getenv("PIKAW_DEFAULT_LOGO_PATH"),
 		defaultLogoPath,
 		filepath.Join(WebDir(), "logo.png"),
 	} {

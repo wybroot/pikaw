@@ -10,8 +10,10 @@ env:
   DOCKER_REGISTRY: docker.io
   # 使用 GitHub Container Registry
   GHCR_REGISTRY: ghcr.io
-  # 镜像名称（需要根据实际情况修改）
-  IMAGE_NAME: ${{ github.repository }}
+  # Docker Hub 镜像名称
+  DOCKER_IMAGE: wangyanbiao/pikaw
+  # GitHub Container Registry 镜像名称
+  GHCR_IMAGE: ${{ github.repository }}
 
 jobs:
   build-and-push:
@@ -57,7 +59,7 @@ jobs:
       # 验证 index.html 模板代码
       - name: 验证 index.html 模板代码
         run: |
-          if grep -Fq "__PIKA_CUSTOM_JS__" web/dist/index.html && grep -Fq "__PIKA_CUSTOM_CSS__" web/dist/index.html && grep -Fq "[[.SystemNameZh]]" web/dist/index.html; then
+          if grep -Fq "__PIKAW_CUSTOM_JS__" web/dist/index.html && grep -Fq "__PIKAW_CUSTOM_CSS__" web/dist/index.html && grep -Fq "[[.SystemNameZh]]" web/dist/index.html; then
             cp web/dist/index.html web/dist/index.html.tmpl
             echo "✓ index.html 模板已准备完成"
           else
@@ -104,8 +106,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}
-            ${{ env.GHCR_REGISTRY }}/${{ env.IMAGE_NAME }}
+            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}
+            ${{ env.GHCR_REGISTRY }}/${{ env.GHCR_IMAGE }}
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
@@ -126,10 +128,10 @@ jobs:
           build-args: |
             VERSION=${{ env.VERSION }}
           cache-from: |
-            type=registry,ref=${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:cache
+            type=registry,ref=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:cache
             type=local,src=/tmp/.buildx-cache
           cache-to: |
-            type=registry,ref=${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:cache,mode=max
+            type=registry,ref=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:cache,mode=max
             type=local,dest=/tmp/.buildx-cache
 
       # 生成构建总结

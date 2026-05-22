@@ -47,7 +47,7 @@ func (h *AgentHandler) DownloadAgent(c echo.Context) error {
 		h.logger.Info("download agent allowed by ip whitelist", zap.String("ip", clientIP), zap.String("filename", filename))
 	}
 
-	agentFilename := fmt.Sprintf("pika-%s", filename)
+	agentFilename := fmt.Sprintf("pikaw-%s", filename)
 	agentFile, err := os.Open(assets.AgentPath(agentFilename))
 	if err != nil {
 		h.logger.Error("agent binary not found", zap.String("filename", filename), zap.Error(err))
@@ -169,11 +169,11 @@ detect_platform() {
     case "$OS" in
         linux)
             PLATFORM="linux-$ARCH"
-            AGENT_NAME="pika-agent"
+            AGENT_NAME="pikaw-agent"
             ;;
         darwin)
             PLATFORM="darwin-$ARCH"
-            AGENT_NAME="pika-agent"
+            AGENT_NAME="pikaw-agent"
             ;;
         *)
             echo_error "不支持的操作系统: $OS"
@@ -187,7 +187,7 @@ detect_platform() {
 # 下载探针
 download_agent() {
     local download_url="` + serverUrl + `/api/agent/downloads/agent-$PLATFORM?key=` + token + `"
-    local temp_file="/tmp/pika-agent-download"
+    local temp_file="/tmp/pikaw-agent-download"
 
     echo_info "正在下载探针..."
 
@@ -228,7 +228,7 @@ register_agent() {
 
 # 主流程
 main() {
-    echo_info "开始安装 Pika Agent..."
+    echo_info "开始安装 PikaW Agent..."
     echo ""
 
     detect_platform
@@ -241,11 +241,11 @@ main() {
     echo_info "=========================================="
     echo ""
     echo_info "常用命令："
-    echo "  查看状态: pika-agent status"
-    echo "  启动服务: pika-agent start"
-    echo "  停止服务: pika-agent stop"
-    echo "  重启服务: pika-agent restart"
-    echo "  卸载服务: pika-agent uninstall"
+    echo "  查看状态: pikaw-agent status"
+    echo "  启动服务: pikaw-agent start"
+    echo "  停止服务: pikaw-agent stop"
+    echo "  重启服务: pikaw-agent restart"
+    echo "  卸载服务: pikaw-agent uninstall"
     echo ""
 }
 

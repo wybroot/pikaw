@@ -12,10 +12,10 @@ services:
       - ./data/vmdata:/victoria-metrics-data
     restart: always
     networks:
-      - pika-network
-  pika:
-    image: wybroot/pikaw:latest
-    container_name: pika-server
+      - pikaw-network
+  pikaw:
+    image: wangyanbiao/pikaw:latest
+    container_name: pikaw-server
     volumes:
       - ./config.yaml:/app/config.yaml
       - ./data:/app/data
@@ -27,10 +27,10 @@ services:
       - victoriametrics
     restart: always
     networks:
-      - pika-network
+      - pikaw-network
 
 networks:
-  pika-network:
+  pikaw-network:
     driver: bridge
 
 

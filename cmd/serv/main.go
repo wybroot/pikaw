@@ -22,9 +22,9 @@ import (
 var (
 	configFile string
 	rootCmd    = &cobra.Command{
-		Use:   "pika-server",
-		Short: "Pika 服务器监控系统",
-		Long:  `Pika 是一个轻量级的服务器监控系统，支持多探针部署和实时监控。`,
+		Use:   "pikaw-server",
+		Short: "PikaW 服务器监控系统",
+		Long:  `PikaW 是一个轻量级的服务器监控系统，支持多探针部署和实时监控。`,
 		Run: func(cmd *cobra.Command, args []string) {
 			internal.Run(configFile)
 		},
@@ -32,8 +32,8 @@ var (
 
 	serveCmd = &cobra.Command{
 		Use:   "serve",
-		Short: "启动 Pika 服务器",
-		Long:  `启动 Pika HTTP 服务器，提供 Web 界面和 API 服务。`,
+		Short: "启动 PikaW 服务器",
+		Long:  `启动 PikaW HTTP 服务器，提供 Web 界面和 API 服务。`,
 		Run: func(cmd *cobra.Command, args []string) {
 			internal.Run(configFile)
 		},
@@ -67,7 +67,7 @@ func main() {
 
 // runMigration 执行数据迁移
 func runMigration(configPath string) {
-	fmt.Println("=== Pika 数据迁移工具 ===")
+	fmt.Println("=== PikaW 数据迁移工具 ===")
 	fmt.Println("配置文件:", configPath)
 	fmt.Println()
 
@@ -150,7 +150,7 @@ func runMigration(configPath string) {
 	}
 
 	fmt.Println()
-	fmt.Println("提示: 现在可以启动服务器: ./pika-server serve")
+	fmt.Println("提示: 现在可以启动服务器: ./pikaw-server serve")
 }
 
 // provideVMClient 提供 VictoriaMetrics 客户端

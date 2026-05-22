@@ -98,7 +98,7 @@ const NotificationChannels = () => {
                     formValues.emailFromEmail = channel.config?.fromEmail || '';
                     formValues.emailPassword = channel.config?.password || '';
                     formValues.emailToEmail = channel.config?.toEmail || '';
-                    formValues.emailSubject = channel.config?.subject || 'Pika 告警通知';
+                    formValues.emailSubject = channel.config?.subject || 'PikaW 告警通知';
                 } else if (channel.type === 'webhook') {
                     formValues.webhookEnabled = channel.enabled;
                     formValues.webhookUrl = channel.config?.url || '';
@@ -199,7 +199,7 @@ const NotificationChannels = () => {
                         fromEmail: values.emailFromEmail || '',
                         password: values.emailPassword || '',
                         toEmail: values.emailToEmail || '',
-                        subject: values.emailSubject || 'Pika 告警通知',
+                        subject: values.emailSubject || 'PikaW 告警通知',
                     },
                 });
             }
@@ -416,7 +416,7 @@ const NotificationChannels = () => {
                                             name="wecomAppOrigin"
                                             initialValue="https://qyapi.weixin.qq.com"
                                             rules={[{required: true, message: '请输入企业微信应用origin'}]}
-                                            tooltip="企业微信应用origin， Pika部署在可信IP的服务器下保持默认即可"
+                                            tooltip="企业微信应用origin， PikaW部署在可信IP的服务器下保持默认即可"
                                         >
                                             <Input placeholder="https://qyapi.weixin.qq.com"/>
                                         </Form.Item>
@@ -678,9 +678,9 @@ const NotificationChannels = () => {
                                         <Form.Item
                                             label="邮件主题"
                                             name="emailSubject"
-                                            tooltip="告警邮件的主题，默认为 'Pika 告警通知'"
+                                            tooltip="告警邮件的主题，默认为 'PikaW 告警通知'"
                                         >
-                                            <Input placeholder="Pika 告警通知"/>
+                                            <Input placeholder="PikaW 告警通知"/>
                                         </Form.Item>
                                     </>
                                 ) : null

@@ -30,16 +30,16 @@ func oldGetIDFilePath() string {
 		homeDir = "."
 	}
 
-	// 统一使用 ~/.pika/agent.id
-	return filepath.Join(homeDir, ".pika", "agent.id")
+	// 统一使用 ~/.pikaw/agent.id
+	return filepath.Join(homeDir, ".pikaw", "agent.id")
 }
 
 // GetIDFilePath 获取 ID 文件路径
 func GetIDFilePath() string {
 	// 获取用户主目录
 	var homeDir = utils.GetSafeHomeDir()
-	// 统一使用 ~/.pika/agent.id
-	return filepath.Join(homeDir, ".pika", "agent.id")
+	// 统一使用 ~/.pikaw/agent.id
+	return filepath.Join(homeDir, ".pikaw", "agent.id")
 }
 
 // Load 加载或生成探针 ID

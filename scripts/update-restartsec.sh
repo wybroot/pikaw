@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Pika Agent RestartSec 升级脚本
+# PikaW Agent RestartSec 升级脚本
 # 用途: 将 systemd 服务的 RestartSec 从 120 改为 5
 # 使用: curl -fsSL https://raw.githubusercontent.com/wybroot/pikaw/master/scripts/update-restartsec.sh | sudo bash
 
@@ -12,11 +12,11 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-SERVICE_NAME="pika-agent"
+SERVICE_NAME="pikaw-agent"
 SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
 
 echo "================================================"
-echo "Pika Agent RestartSec 升级脚本"
+echo "PikaW Agent RestartSec 升级脚本"
 echo "================================================"
 echo ""
 
@@ -30,7 +30,7 @@ fi
 # 检查服务文件是否存在
 if [ ! -f "$SERVICE_FILE" ]; then
     echo -e "${RED}错误: 服务文件不存在: $SERVICE_FILE${NC}"
-    echo "请先安装 pika-agent 服务"
+    echo "请先安装 pikaw-agent 服务"
     exit 1
 fi
 

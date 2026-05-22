@@ -1,23 +1,23 @@
 services:
   postgresql:
     image: postgres:17
-    container_name: pika-postgresql
+    container_name: pikaw-postgresql
     environment:
-      POSTGRES_DB: pika
-      POSTGRES_USER: pika
-      POSTGRES_PASSWORD: pika
+      POSTGRES_DB: pikaw
+      POSTGRES_USER: pikaw
+      POSTGRES_PASSWORD: pikaw
     volumes:
       - ./data/postgresql:/var/lib/postgresql/data
     ports:
       - "127.0.0.1:5432:5432"
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U pika" ]
+      test: [ "CMD-SHELL", "pg_isready -U pikaw" ]
       interval: 10s
       timeout: 5s
       retries: 5
     restart: always
     networks:
-      - pika-network
+      - pikaw-network
   victoriametrics:
     image: victoriametrics/victoria-metrics:v1.131.0
     container_name: victoriametrics
@@ -31,10 +31,10 @@ services:
       - ./data/vmdata:/victoria-metrics-data
     restart: always
     networks:
-      - pika-network
-  pika:
-    image: wybroot/pikaw:latest
-    container_name: pika-server
+      - pikaw-network
+  pikaw:
+    image: wangyanbiao/pikaw:latest
+    container_name: pikaw-server
     volumes:
       - ./config.yaml:/app/config.yaml
     # 开启 Geo 配置后打开下面的配置
@@ -48,9 +48,9 @@ services:
         condition: service_started
     restart: always
     networks:
-      - pika-network
+      - pikaw-network
 
 networks:
-  pika-network:
+  pikaw-network:
     driver: bridge
 

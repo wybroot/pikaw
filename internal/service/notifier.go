@@ -965,10 +965,10 @@ func (n *Notifier) sendEmailByConfig(ctx context.Context, config map[string]inte
 		return fmt.Errorf("邮件配置缺少 toEmail")
 	}
 
-	// 邮件主题，默认为"Pika 告警通知"
+	// 邮件主题，默认为"PikaW 告警通知"
 	subject, ok := config["subject"].(string)
 	if !ok || subject == "" {
-		subject = "Pika 告警通知"
+		subject = "PikaW 告警通知"
 	}
 
 	return n.sendEmail(ctx, smtpHost, smtpPort, fromEmail, password, toEmail, subject, message)

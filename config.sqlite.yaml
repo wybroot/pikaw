@@ -2,11 +2,11 @@ database:
   enabled: true
   type: sqlite
   sqlite:
-    path: "./data/pika.db"
+    path: "./data/pikaw.db"
   show_sql: false
 log:
   level: debug # 日志等级  debug,info,waring,error
-  filename: ./logs/pika.log
+  filename: ./logs/pikaw.log
 
 server:
   addr: "0.0.0.0:8080"

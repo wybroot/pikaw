@@ -14,10 +14,10 @@ WORKDIR /app
 ARG TARGETARCH
 
 # 从外部编译的产物复制 agent 文件
-COPY ./bin/agents/pika-agent-linux-${TARGETARCH} ./pika-agent
+COPY ./bin/agents/pikaw-agent-linux-${TARGETARCH} ./pikaw-agent
 
 # 赋予执行权限
-RUN chmod +x ./pika-agent
+RUN chmod +x ./pikaw-agent
 
 # 启动 agent
-ENTRYPOINT ["./pika-agent", "run"]
+ENTRYPOINT ["./pikaw-agent", "run"]

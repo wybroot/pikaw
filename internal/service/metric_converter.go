@@ -14,48 +14,48 @@ func (s *MetricService) convertToMetrics(agentID string, metricType string, data
 	switch protocol.MetricType(metricType) {
 	case protocol.MetricTypeCPU:
 		cpuData := data.(*protocol.CPUData)
-		metrics = append(metrics, createMetric("pika_cpu_usage_percent", agentID, nil, cpuData.UsagePercent, timestamp))
-		metrics = append(metrics, createMetric("pika_cpu_cores_logical", agentID, nil, float64(cpuData.LogicalCores), timestamp))
-		metrics = append(metrics, createMetric("pika_cpu_cores_physical", agentID, nil, float64(cpuData.PhysicalCores), timestamp))
+		metrics = append(metrics, createMetric("pikaw_cpu_usage_percent", agentID, nil, cpuData.UsagePercent, timestamp))
+		metrics = append(metrics, createMetric("pikaw_cpu_cores_logical", agentID, nil, float64(cpuData.LogicalCores), timestamp))
+		metrics = append(metrics, createMetric("pikaw_cpu_cores_physical", agentID, nil, float64(cpuData.PhysicalCores), timestamp))
 
 	case protocol.MetricTypeMemory:
 		memData := data.(*protocol.MemoryData)
-		metrics = append(metrics, createMetric("pika_memory_usage_percent", agentID, nil, memData.UsagePercent, timestamp))
-		metrics = append(metrics, createMetric("pika_memory_total_bytes", agentID, nil, float64(memData.Total), timestamp))
-		metrics = append(metrics, createMetric("pika_memory_used_bytes", agentID, nil, float64(memData.Used), timestamp))
-		metrics = append(metrics, createMetric("pika_memory_available_bytes", agentID, nil, float64(memData.Available), timestamp))
-		metrics = append(metrics, createMetric("pika_memory_swap_total_bytes", agentID, nil, float64(memData.SwapTotal), timestamp))
-		metrics = append(metrics, createMetric("pika_memory_swap_used_bytes", agentID, nil, float64(memData.SwapUsed), timestamp))
+		metrics = append(metrics, createMetric("pikaw_memory_usage_percent", agentID, nil, memData.UsagePercent, timestamp))
+		metrics = append(metrics, createMetric("pikaw_memory_total_bytes", agentID, nil, float64(memData.Total), timestamp))
+		metrics = append(metrics, createMetric("pikaw_memory_used_bytes", agentID, nil, float64(memData.Used), timestamp))
+		metrics = append(metrics, createMetric("pikaw_memory_available_bytes", agentID, nil, float64(memData.Available), timestamp))
+		metrics = append(metrics, createMetric("pikaw_memory_swap_total_bytes", agentID, nil, float64(memData.SwapTotal), timestamp))
+		metrics = append(metrics, createMetric("pikaw_memory_swap_used_bytes", agentID, nil, float64(memData.SwapUsed), timestamp))
 
 	case protocol.MetricTypeDisk:
 		diskDataList := data.([]protocol.DiskData)
 		for _, diskData := range diskDataList {
 			labels := map[string]string{"mount_point": diskData.MountPoint}
-			metrics = append(metrics, createMetric("pika_disk_usage_percent", agentID, labels, diskData.UsagePercent, timestamp))
-			metrics = append(metrics, createMetric("pika_disk_total_bytes", agentID, labels, float64(diskData.Total), timestamp))
-			metrics = append(metrics, createMetric("pika_disk_used_bytes", agentID, labels, float64(diskData.Used), timestamp))
-			metrics = append(metrics, createMetric("pika_disk_free_bytes", agentID, labels, float64(diskData.Free), timestamp))
+			metrics = append(metrics, createMetric("pikaw_disk_usage_percent", agentID, labels, diskData.UsagePercent, timestamp))
+			metrics = append(metrics, createMetric("pikaw_disk_total_bytes", agentID, labels, float64(diskData.Total), timestamp))
+			metrics = append(metrics, createMetric("pikaw_disk_used_bytes", agentID, labels, float64(diskData.Used), timestamp))
+			metrics = append(metrics, createMetric("pikaw_disk_free_bytes", agentID, labels, float64(diskData.Free), timestamp))
 		}
 
 	case protocol.MetricTypeNetwork:
 		networkDataList := data.([]protocol.NetworkData)
 		for _, netData := range networkDataList {
 			labels := map[string]string{"interface": netData.Interface}
-			metrics = append(metrics, createMetric("pika_network_sent_bytes_rate", agentID, labels, float64(netData.BytesSentRate), timestamp))
-			metrics = append(metrics, createMetric("pika_network_recv_bytes_rate", agentID, labels, float64(netData.BytesRecvRate), timestamp))
-			metrics = append(metrics, createMetric("pika_network_sent_bytes_total", agentID, labels, float64(netData.BytesSentTotal), timestamp))
-			metrics = append(metrics, createMetric("pika_network_recv_bytes_total", agentID, labels, float64(netData.BytesRecvTotal), timestamp))
+			metrics = append(metrics, createMetric("pikaw_network_sent_bytes_rate", agentID, labels, float64(netData.BytesSentRate), timestamp))
+			metrics = append(metrics, createMetric("pikaw_network_recv_bytes_rate", agentID, labels, float64(netData.BytesRecvRate), timestamp))
+			metrics = append(metrics, createMetric("pikaw_network_sent_bytes_total", agentID, labels, float64(netData.BytesSentTotal), timestamp))
+			metrics = append(metrics, createMetric("pikaw_network_recv_bytes_total", agentID, labels, float64(netData.BytesRecvTotal), timestamp))
 		}
 
 	case protocol.MetricTypeNetworkConnection:
 		connData := data.(*protocol.NetworkConnectionData)
-		metrics = append(metrics, createMetric("pika_network_conn_established", agentID, nil, float64(connData.Established), timestamp))
-		metrics = append(metrics, createMetric("pika_network_conn_syn_sent", agentID, nil, float64(connData.SynSent), timestamp))
-		metrics = append(metrics, createMetric("pika_network_conn_syn_recv", agentID, nil, float64(connData.SynRecv), timestamp))
-		metrics = append(metrics, createMetric("pika_network_conn_time_wait", agentID, nil, float64(connData.TimeWait), timestamp))
-		metrics = append(metrics, createMetric("pika_network_conn_close_wait", agentID, nil, float64(connData.CloseWait), timestamp))
-		metrics = append(metrics, createMetric("pika_network_conn_listen", agentID, nil, float64(connData.Listen), timestamp))
-		metrics = append(metrics, createMetric("pika_network_conn_total", agentID, nil, float64(connData.Total), timestamp))
+		metrics = append(metrics, createMetric("pikaw_network_conn_established", agentID, nil, float64(connData.Established), timestamp))
+		metrics = append(metrics, createMetric("pikaw_network_conn_syn_sent", agentID, nil, float64(connData.SynSent), timestamp))
+		metrics = append(metrics, createMetric("pikaw_network_conn_syn_recv", agentID, nil, float64(connData.SynRecv), timestamp))
+		metrics = append(metrics, createMetric("pikaw_network_conn_time_wait", agentID, nil, float64(connData.TimeWait), timestamp))
+		metrics = append(metrics, createMetric("pikaw_network_conn_close_wait", agentID, nil, float64(connData.CloseWait), timestamp))
+		metrics = append(metrics, createMetric("pikaw_network_conn_listen", agentID, nil, float64(connData.Listen), timestamp))
+		metrics = append(metrics, createMetric("pikaw_network_conn_total", agentID, nil, float64(connData.Total), timestamp))
 
 	case protocol.MetricTypeDiskIO:
 		diskIODataList := data.([]*protocol.DiskIOData)
@@ -65,8 +65,8 @@ func (s *MetricService) convertToMetrics(agentID string, metricType string, data
 			totalReadRate += diskIOData.ReadBytesRate
 			totalWriteRate += diskIOData.WriteBytesRate
 		}
-		metrics = append(metrics, createMetric("pika_disk_read_bytes_rate", agentID, nil, float64(totalReadRate), timestamp))
-		metrics = append(metrics, createMetric("pika_disk_write_bytes_rate", agentID, nil, float64(totalWriteRate), timestamp))
+		metrics = append(metrics, createMetric("pikaw_disk_read_bytes_rate", agentID, nil, float64(totalReadRate), timestamp))
+		metrics = append(metrics, createMetric("pikaw_disk_write_bytes_rate", agentID, nil, float64(totalWriteRate), timestamp))
 
 	case protocol.MetricTypeGPU:
 		gpuDataList := data.([]protocol.GPUData)
@@ -75,11 +75,11 @@ func (s *MetricService) convertToMetrics(agentID string, metricType string, data
 				"gpu_index": fmt.Sprintf("%d", gpuData.Index),
 				"gpu_name":  gpuData.Name,
 			}
-			metrics = append(metrics, createMetric("pika_gpu_utilization_percent", agentID, labels, gpuData.Utilization, timestamp))
-			metrics = append(metrics, createMetric("pika_gpu_memory_total_bytes", agentID, labels, float64(gpuData.MemoryTotal), timestamp))
-			metrics = append(metrics, createMetric("pika_gpu_memory_used_bytes", agentID, labels, float64(gpuData.MemoryUsed), timestamp))
-			metrics = append(metrics, createMetric("pika_gpu_temperature_celsius", agentID, labels, gpuData.Temperature, timestamp))
-			metrics = append(metrics, createMetric("pika_gpu_power_draw_watts", agentID, labels, gpuData.PowerUsage, timestamp))
+			metrics = append(metrics, createMetric("pikaw_gpu_utilization_percent", agentID, labels, gpuData.Utilization, timestamp))
+			metrics = append(metrics, createMetric("pikaw_gpu_memory_total_bytes", agentID, labels, float64(gpuData.MemoryTotal), timestamp))
+			metrics = append(metrics, createMetric("pikaw_gpu_memory_used_bytes", agentID, labels, float64(gpuData.MemoryUsed), timestamp))
+			metrics = append(metrics, createMetric("pikaw_gpu_temperature_celsius", agentID, labels, gpuData.Temperature, timestamp))
+			metrics = append(metrics, createMetric("pikaw_gpu_power_draw_watts", agentID, labels, gpuData.PowerUsage, timestamp))
 		}
 
 	case protocol.MetricTypeTemperature:
@@ -90,7 +90,7 @@ func (s *MetricService) convertToMetrics(agentID string, metricType string, data
 			labels := map[string]string{
 				"sensor_label": tempData.Type,
 			}
-			metrics = append(metrics, createMetric("pika_temperature_celsius", agentID, labels, tempData.Temperature, timestamp))
+			metrics = append(metrics, createMetric("pikaw_temperature_celsius", agentID, labels, tempData.Temperature, timestamp))
 		}
 
 	case protocol.MetricTypeMonitor:
@@ -101,7 +101,7 @@ func (s *MetricService) convertToMetrics(agentID string, metricType string, data
 				"monitor_type": monitorData.Type,
 				"target":       monitorData.Target,
 			}
-			metrics = append(metrics, createMetric("pika_monitor_response_time_ms", agentID, labels, float64(monitorData.ResponseTime), timestamp))
+			metrics = append(metrics, createMetric("pikaw_monitor_response_time_ms", agentID, labels, float64(monitorData.ResponseTime), timestamp))
 		}
 	}
 

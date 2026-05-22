@@ -67,8 +67,8 @@ func renderIndexHTML(dir string, systemConfig *models.SystemConfig) error {
 		return err
 	}
 
-	html := strings.ReplaceAll(rendered.String(), "/*__PIKA_CUSTOM_JS__*/", systemConfig.CustomJS)
-	html = strings.ReplaceAll(html, "/*__PIKA_CUSTOM_CSS__*/", systemConfig.CustomCSS)
+	html := strings.ReplaceAll(rendered.String(), "/*__PIKAW_CUSTOM_JS__*/", systemConfig.CustomJS)
+	html = strings.ReplaceAll(html, "/*__PIKAW_CUSTOM_CSS__*/", systemConfig.CustomCSS)
 
 	out, err := os.Create(outPath)
 	if err != nil {

@@ -13,7 +13,7 @@ import (
 
 const (
 	PAMConfigFile   = "/etc/pam.d/sshd"
-	HookBinaryPath  = "/usr/local/bin/pika-agent"
+	HookBinaryPath  = "/usr/local/bin/pikaw-agent"
 	HookCommand     = "ssh-login-hook"
 	SSHDConfigFile  = "/etc/ssh/sshd_config"
 	UsePAMDirective = "UsePAM yes"
@@ -32,7 +32,7 @@ func pamConfigLine() string {
 }
 
 func legacyPamConfigLine() string {
-	return "session optional pam_exec.so /usr/local/bin/pika_ssh_hook.sh"
+	return "session optional pam_exec.so /usr/local/bin/pikaw_ssh_hook.sh"
 }
 
 // Install 安装 PAM Hook

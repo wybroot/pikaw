@@ -122,7 +122,7 @@ func (s *AccountService) generateToken(username, nickname string) (string, int64
 			ExpiresAt: jwt.NewNumericDate(expiresAt),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 			NotBefore: jwt.NewNumericDate(time.Now()),
-			Issuer:    "pika",
+			Issuer:    "pikaw",
 			Subject:   username,
 		},
 	}

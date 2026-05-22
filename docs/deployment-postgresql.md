@@ -29,11 +29,11 @@ database:
   enabled: true
   type: postgres
   postgres:
-    hostname: pika-postgresql  # Docker Compose 服务名
+    hostname: pikaw-postgresql  # Docker Compose 服务名
     port: 5432
-    username: pika
-    password: pika  # 生产环境建议修改
-    database: pika
+    username: pikaw
+    password: pikaw  # 生产环境建议修改
+    database: pikaw
 ```
 
 **注意**：如果修改了 `docker-compose.postgresql.yml` 中的数据库密码（`POSTGRES_PASSWORD`），也需要同步修改 `config.yaml` 中的数据库密码。
@@ -50,7 +50,7 @@ docker-compose -f docker-compose.postgresql.yml up -d
 docker-compose -f docker-compose.postgresql.yml ps
 
 # 查看日志
-docker-compose -f docker-compose.postgresql.yml logs -f pika
+docker-compose -f docker-compose.postgresql.yml logs -f pikaw
 ```
 
 ### 4. 访问服务
@@ -92,10 +92,10 @@ docker-compose -f docker-compose.postgresql.yml down -v
 
 ```bash
 # 备份数据库
-docker-compose -f docker-compose.postgresql.yml exec postgresql pg_dump -U pika pika > backup.sql
+docker-compose -f docker-compose.postgresql.yml exec postgresql pg_dump -U pikaw pikaw > backup.sql
 
 # 恢复数据库
-docker-compose -f docker-compose.postgresql.yml exec -T postgresql psql -U pika pika < backup.sql
+docker-compose -f docker-compose.postgresql.yml exec -T postgresql psql -U pikaw pikaw < backup.sql
 ```
 
 ### 备份 VictoriaMetrics 数据
@@ -113,10 +113,10 @@ tar -czf vmdata-backup-$(date +%Y%m%d).tar.gz ./data/vmdata
 
 - 确认 PostgreSQL 容器已启动且健康检查通过
 - 检查 `config.yaml` 中的数据库配置是否正确：
-  - `hostname` 应该为 `pika-postgresql`（Docker Compose 服务名）
+  - `hostname` 应该为 `pikaw-postgresql`（Docker Compose 服务名）
   - `password` 应该与 `docker-compose.postgresql.yml` 中的 `POSTGRES_PASSWORD` 一致
 - 确认 `config.yaml` 文件已正确映射到容器中
 - 查看数据库日志：`docker-compose -f docker-compose.postgresql.yml logs postgresql`
-- 查看应用日志：`docker-compose -f docker-compose.postgresql.yml logs pika`
+- 查看应用日志：`docker-compose -f docker-compose.postgresql.yml logs pikaw`
 
 其他故障排查请参考 [通用配置说明](common-config.md)。

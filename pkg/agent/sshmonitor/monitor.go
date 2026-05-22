@@ -16,8 +16,8 @@ import (
 )
 
 const (
-	DefaultSocketDir  = "/run/pika"
-	DefaultSocketPath = "/run/pika/ssh_login.sock"
+	DefaultSocketDir  = "/run/pikaw"
+	DefaultSocketPath = "/run/pikaw/ssh_login.sock"
 )
 
 // Monitor SSH登录监控器

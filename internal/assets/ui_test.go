@@ -32,19 +32,19 @@ window.SystemConfig = {
     Version: "[[.Version]]",
 };
 </script>
-<script>/*__PIKA_CUSTOM_JS__*/</script>
-<style>/*__PIKA_CUSTOM_CSS__*/</style>`
+<script>/*__PIKAW_CUSTOM_JS__*/</script>
+<style>/*__PIKAW_CUSTOM_CSS__*/</style>`
 	if err := os.WriteFile(indexPath, []byte(src), 0644); err != nil {
 		t.Fatal(err)
 	}
 
 	provider := testSystemConfigProvider{
 		config: &models.SystemConfig{
-			SystemNameZh: "皮卡监控",
-			SystemNameEn: "Pika Monitor",
+			SystemNameZh: "PikaW 监控",
+			SystemNameEn: "PikaW Monitor",
 			ICPCode:      "ICP-1",
 			DefaultView:  "grid",
-			CustomJS:     `console.log("pika");`,
+			CustomJS:     `console.log("pikaw");`,
 			CustomCSS:    `body { color: red; }`,
 			Version:      "v1.2.3",
 		},
@@ -59,10 +59,10 @@ window.SystemConfig = {
 	}
 	html := string(rendered)
 	for _, want := range []string{
-		"<title>皮卡监控 | Pika Monitor</title>",
-		`SystemNameZh: "皮卡监控"`,
+		"<title>PikaW 监控 | PikaW Monitor</title>",
+		`SystemNameZh: "PikaW 监控"`,
 		`Version: "v1.2.3"`,
-		`console.log("pika");`,
+		`console.log("pikaw");`,
 		`body { color: red; }`,
 	} {
 		if !strings.Contains(html, want) {

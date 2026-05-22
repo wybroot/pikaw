@@ -81,7 +81,7 @@ https://tools.typesafe.cn/bcrypt
 ### 修改配置文件后需要重启服务
 
 ```shell
-docker compose restart pika
+docker compose restart pikaw
 ```
 
 ## 生产环境部署建议
@@ -143,7 +143,7 @@ docker-compose restart
   curl http://localhost:8428/metrics
 
   # 从容器内访问
-  docker-compose exec pika wget -O- http://victoriametrics:8428/metrics
+  docker-compose exec pikaw wget -O- http://victoriametrics:8428/metrics
   ```
 
 ### 配置文件问题
@@ -153,7 +153,7 @@ docker-compose restart
 - 验证配置文件权限：`ls -l config.yaml`
 - 查看容器内是否成功加载配置：
   ```bash
-  docker-compose exec pika cat /app/config.yaml
+  docker-compose exec pikaw cat /app/config.yaml
   ```
 
 ### 端口冲突

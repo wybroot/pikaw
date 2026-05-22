@@ -21,7 +21,7 @@ const PublicFooter = () => {
                                 title="查看 GitHub 仓库"
                             >
                                 <Github className="h-3 w-3 group-hover:scale-110 transition-transform"/>
-                                <span className="underline decoration-slate-400 dark:decoration-cyan-700 underline-offset-2">Pika Monitor</span>
+                                <span className="underline decoration-slate-400 dark:decoration-cyan-700 underline-offset-2">PikaW Monitor</span>
                             </a>
                             <span className="text-slate-500 dark:text-cyan-500/80 tracking-wider">{window.SystemConfig.Version}</span>
                             {/* ICP 备案号 */}

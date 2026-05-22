@@ -542,8 +542,8 @@ func (s *MetricService) DeleteAgentMetrics(ctx context.Context, agentID string) 
 	// 删除内存中的最新指标缓存
 	s.latestCache.Delete(agentID)
 
-	// 删除 VictoriaMetrics 中该探针的所有 pika 指标
-	matcher := fmt.Sprintf(`{__name__=~"pika_.*",agent_id=%q}`, agentID)
+	// 删除 VictoriaMetrics 中该探针的所有 pikaw 指标
+	matcher := fmt.Sprintf(`{__name__=~"pikaw_.*",agent_id=%q}`, agentID)
 	if err := s.vmClient.DeleteSeries(ctx, []string{matcher}); err != nil {
 		s.logger.Error("删除探针 VictoriaMetrics 数据失败",
 			zap.String("agentID", agentID),
@@ -564,8 +564,8 @@ func (s *MetricService) DeleteMonitorMetrics(ctx context.Context, monitorID stri
 	// 删除内存中的监控缓存
 	s.monitorLatestCache.Delete(monitorID)
 
-	// 删除 VictoriaMetrics 中该监控任务的所有 pika monitor 指标
-	matcher := fmt.Sprintf(`{__name__=~"pika_monitor_.*",monitor_id=%q}`, monitorID)
+	// 删除 VictoriaMetrics 中该监控任务的所有 pikaw monitor 指标
+	matcher := fmt.Sprintf(`{__name__=~"pikaw_monitor_.*",monitor_id=%q}`, monitorID)
 	if err := s.vmClient.DeleteSeries(ctx, []string{matcher}); err != nil {
 		s.logger.Error("删除服务监控 VictoriaMetrics 数据失败",
 			zap.String("monitorID", monitorID),
@@ -580,7 +580,7 @@ func (s *MetricService) DeleteMonitorMetrics(ctx context.Context, monitorID stri
 // GetAvailableNetworkInterfaces 获取探针的可用网卡列表（从 VictoriaMetrics 查询）
 func (s *MetricService) GetAvailableNetworkInterfaces(ctx context.Context, agentID string) ([]string, error) {
 	// 查询 interface label 的所有值，排除空字符串（汇总数据）
-	match := []string{fmt.Sprintf(`pika_network_sent_bytes_rate{agent_id="%s"}`, agentID)}
+	match := []string{fmt.Sprintf(`pikaw_network_sent_bytes_rate{agent_id="%s"}`, agentID)}
 	allInterfaces, err := s.vmClient.GetLabelValues(ctx, "interface", match)
 	if err != nil {
 		s.logger.Error("查询网卡列表失败",
@@ -608,19 +608,19 @@ func (s *MetricService) buildPromQLQueries(agentID, metricType string, interface
 	case "cpu":
 		queries = []metric.QueryDefinition{{
 			Name:  "usage",
-			Query: fmt.Sprintf(`pika_cpu_usage_percent{agent_id="%s"}`, agentID),
+			Query: fmt.Sprintf(`pikaw_cpu_usage_percent{agent_id="%s"}`, agentID),
 		}}
 
 	case "memory":
 		queries = []metric.QueryDefinition{{
 			Name:  "usage",
-			Query: fmt.Sprintf(`pika_memory_usage_percent{agent_id="%s"}`, agentID),
+			Query: fmt.Sprintf(`pikaw_memory_usage_percent{agent_id="%s"}`, agentID),
 		}}
 
 	case "disk":
 		queries = []metric.QueryDefinition{{
 			Name:  "usage",
-			Query: fmt.Sprintf(`pika_disk_usage_percent{agent_id="%s",mount_point=""}`, agentID),
+			Query: fmt.Sprintf(`pikaw_disk_usage_percent{agent_id="%s",mount_point=""}`, agentID),
 		}}
 
 	case "network":
@@ -630,12 +630,12 @@ func (s *MetricService) buildPromQLQueries(agentID, metricType string, interface
 			queries = []metric.QueryDefinition{
 				{
 					Name:   "upload",
-					Query:  fmt.Sprintf(`pika_network_sent_bytes_rate{agent_id="%s",interface="%s"}`, agentID, interfaceName),
+					Query:  fmt.Sprintf(`pikaw_network_sent_bytes_rate{agent_id="%s",interface="%s"}`, agentID, interfaceName),
 					Labels: map[string]string{"interface": interfaceName},
 				},
 				{
 					Name:   "download",
-					Query:  fmt.Sprintf(`pika_network_recv_bytes_rate{agent_id="%s",interface="%s"}`, agentID, interfaceName),
+					Query:  fmt.Sprintf(`pikaw_network_recv_bytes_rate{agent_id="%s",interface="%s"}`, agentID, interfaceName),
 					Labels: map[string]string{"interface": interfaceName},
 				},
 			}
@@ -656,17 +656,17 @@ func (s *MetricService) buildPromQLQueries(agentID, metricType string, interface
 	case "network_connection":
 		// 网络连接统计：多个状态
 		queries = []metric.QueryDefinition{
-			{Name: "established", Query: fmt.Sprintf(`pika_network_conn_established{agent_id="%s"}`, agentID)},
-			{Name: "time_wait", Query: fmt.Sprintf(`pika_network_conn_time_wait{agent_id="%s"}`, agentID)},
-			{Name: "close_wait", Query: fmt.Sprintf(`pika_network_conn_close_wait{agent_id="%s"}`, agentID)},
-			{Name: "listen", Query: fmt.Sprintf(`pika_network_conn_listen{agent_id="%s"}`, agentID)},
+			{Name: "established", Query: fmt.Sprintf(`pikaw_network_conn_established{agent_id="%s"}`, agentID)},
+			{Name: "time_wait", Query: fmt.Sprintf(`pikaw_network_conn_time_wait{agent_id="%s"}`, agentID)},
+			{Name: "close_wait", Query: fmt.Sprintf(`pikaw_network_conn_close_wait{agent_id="%s"}`, agentID)},
+			{Name: "listen", Query: fmt.Sprintf(`pikaw_network_conn_listen{agent_id="%s"}`, agentID)},
 		}
 
 	case "disk_io":
 		// 磁盘 IO：读和写
 		queries = []metric.QueryDefinition{
-			{Name: "read", Query: fmt.Sprintf(`pika_disk_read_bytes_rate{agent_id="%s"}`, agentID)},
-			{Name: "write", Query: fmt.Sprintf(`pika_disk_write_bytes_rate{agent_id="%s"}`, agentID)},
+			{Name: "read", Query: fmt.Sprintf(`pikaw_disk_read_bytes_rate{agent_id="%s"}`, agentID)},
+			{Name: "write", Query: fmt.Sprintf(`pikaw_disk_write_bytes_rate{agent_id="%s"}`, agentID)},
 		}
 
 	case "gpu":
@@ -674,11 +674,11 @@ func (s *MetricService) buildPromQLQueries(agentID, metricType string, interface
 		queries = []metric.QueryDefinition{
 			{
 				Name:  "utilization",
-				Query: fmt.Sprintf(`pika_gpu_utilization_percent{agent_id="%s"}`, agentID),
+				Query: fmt.Sprintf(`pikaw_gpu_utilization_percent{agent_id="%s"}`, agentID),
 			},
 			{
 				Name:  "temperature",
-				Query: fmt.Sprintf(`pika_gpu_temperature_celsius{agent_id="%s"}`, agentID),
+				Query: fmt.Sprintf(`pikaw_gpu_temperature_celsius{agent_id="%s"}`, agentID),
 			},
 		}
 
@@ -686,14 +686,14 @@ func (s *MetricService) buildPromQLQueries(agentID, metricType string, interface
 		// 温度：按传感器类型分组
 		queries = []metric.QueryDefinition{{
 			Name:  "temperature",
-			Query: fmt.Sprintf(`pika_temperature_celsius{agent_id="%s"}`, agentID),
+			Query: fmt.Sprintf(`pikaw_temperature_celsius{agent_id="%s"}`, agentID),
 		}}
 
 	case "monitor":
 		// 监控：响应时间（该探针参与的所有监控任务）
 		queries = []metric.QueryDefinition{{
 			Name:  "response_time",
-			Query: fmt.Sprintf(`pika_monitor_response_time_ms{agent_id="%s"}`, agentID),
+			Query: fmt.Sprintf(`pikaw_monitor_response_time_ms{agent_id="%s"}`, agentID),
 		}}
 	}
 
@@ -813,7 +813,7 @@ func (s *MetricService) convertQueryResultToSeries(result *vmclient.QueryResult,
 // buildMonitorPromQLQueries 构建监控查询的 PromQL 语句
 func (s *MetricService) buildMonitorPromQLQueries(monitorID string, aggregation string, step time.Duration) []metric.QueryDefinition {
 	queries := []metric.QueryDefinition{
-		{Name: "response_time", Query: fmt.Sprintf(`pika_monitor_response_time_ms{monitor_id="%s"}`, monitorID)},
+		{Name: "response_time", Query: fmt.Sprintf(`pikaw_monitor_response_time_ms{monitor_id="%s"}`, monitorID)},
 	}
 	return expandAggregationQueries(queries, aggregation, step)
 }
