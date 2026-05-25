@@ -26,14 +26,12 @@ PikaW 是一个轻量级的探针监控系统，支持实时数据采集、存�
 
 ## 截图
 
-![public1.png](screenshots/public1.png)
-![public2.png](screenshots/public2.png)
-![public3.png](screenshots/public3.png)
-![public4.png](screenshots/public4.png)
-![sec1.png](screenshots/sec1.png)
-![sec2.png](screenshots/sec2.png)
-![tamper.png](screenshots/tamper.png)
-![setting.png](screenshots/setting.png)
+![设备监控](screenshots/public1.png)
+![服务监控](screenshots/public4.png)
+![Docker 状态](screenshots/dockerstats.png)
+![安全审计](screenshots/audit.png)
+![应急响应](screenshots/sec01.png)
+![系统设置](screenshots/setting.png)
 
 ## 快速开始
 
@@ -87,3 +85,4 @@ docker-compose -f docker-compose.postgresql.yml up -d
 - Docker 20.10+
 - Docker Compose 1.29+
 
+基于pika监控二开，原项目地址https://github.com/dushixiang/pika.git
