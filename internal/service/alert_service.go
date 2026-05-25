@@ -949,6 +949,15 @@ func (s *AlertService) checkAgentExpireAlert(ctx context.Context, agent *models.
 		}
 	}
 
+	// 无过期时间的 agent，仅需处理残留的活跃告警
+	if agent.ExpireTime <= 0 {
+		if state.IsFiring {
+			state.Value = agentExpireDaysLeft(agent.ExpireTime, now)
+			s.resolveAgentExpireAlert(ctx, agent, state)
+		}
+		return nil
+	}
+
 	daysLeft := agentExpireDaysLeft(agent.ExpireTime, now)
 	state.AgentID = agent.ID
 	state.AlertType = agentExpireAlertType
