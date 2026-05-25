@@ -47,6 +47,9 @@ services:
       victoriametrics:
         condition: service_started
     restart: always
+    dns:
+      - 127.0.0.11
+      - 8.8.8.8
     networks:
       - pikaw-network
 
