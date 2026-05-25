@@ -21,6 +21,13 @@ func NewAgentRepo(db *gorm.DB) *AgentRepo {
 	}
 }
 
+// FindAll 获取所有探针
+func (r *AgentRepo) FindAll(ctx context.Context) ([]models.Agent, error) {
+	var agents []models.Agent
+	err := r.db.WithContext(ctx).Find(&agents).Error
+	return agents, err
+}
+
 // UpdateStatus 更新探针状态
 func (r *AgentRepo) UpdateStatus(ctx context.Context, agentID string, status int, lastSeenAt int64) error {
 	m := map[string]interface{}{
