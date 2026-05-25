@@ -14,7 +14,7 @@ WORKDIR /app
 ARG TARGETARCH
 
 # 从外部编译的产物复制文件
-COPY ./bin/pikaw-linux-${TARGETARCH} ./pika
+COPY ./bin/pikaw-linux-${TARGETARCH} ./pikaw
 COPY ./bin/agents ./bin/agents
 COPY ./web/dist ./web/dist
 COPY ./web/public/logo.png ./web/public/logo.png
